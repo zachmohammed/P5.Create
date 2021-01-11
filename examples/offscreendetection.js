@@ -4,7 +4,7 @@ function setup(){
     rectposx = 200
     rectposy = 250
     textdisplay = "Nothing is off screen"
-    testrect =createshape("rect", 100, 100, 100, 200)
+    testrect =createshape("rect", 100, 100, 100, 200, "")
 }
 function draw(){
     background(100,100,100) //clears the hover text on the button

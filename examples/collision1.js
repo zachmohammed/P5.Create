@@ -1,9 +1,9 @@
 function setup(){
     createCanvas(800, 800);
     background(100,100,100);
-    testrect =createshape("rect", 100, 100, 200, 100)
-    borderright = createshape("rect", 800,200, 700,0)
-    borderleft = createshape("rect", 800,200, -100,0)
+    testrect =createshape("rect", 100, 100, 200, 100, "")
+    borderright = createshape("rect", 800,200, 700,0, "")
+    borderleft = createshape("rect", 800,200, -100,0, "")
     movingfoward = true
 }
 function draw(){

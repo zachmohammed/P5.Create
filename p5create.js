@@ -25,7 +25,7 @@ function createsprite(img, x, y,layer, tag) {
 
 }
 
-function createshape(shape, height, width, x, y){
+function createshape(shape, height, width, x, y, tag){
     var shape = {
         isshape: true,
         shape: shape,
@@ -33,6 +33,7 @@ function createshape(shape, height, width, x, y){
         width: width,
         xpos: x,
         ypos: y,
+        stag: tag,
         color: color(random(255),random(255),random(255)),
     }
     spritesarray.push(shape)
