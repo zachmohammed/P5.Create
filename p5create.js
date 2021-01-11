@@ -106,7 +106,7 @@ function removebytag(tag) {
   
 function searchtag(tag) {
     for (let i = 0; i < spritesarray.length; i++) {
-
+        return(spritesarray[i])
     }
 }
 function movebytag(tag, xory, movement) {
@@ -132,8 +132,7 @@ function collide(sprite, collidesprite) {
 function collidewithtag(sprite, tag) {
     for (let i = 0; i < spritesarray.length; i++) {
         if (spritesarray[i].stag == tag) {
-            if (((sprite.ypos + sprite.img.height) > spritesarray[i].ypos) && ((sprite.xpos + sprite.img.width) > spritesarray[i].xpos) && !((sprite.xpos) > spritesarray[i].xpos + spritesarray[i].img.width) && !((sprite.ypos) > spritesarray[i].ypos + spritesarray[i].img.height)) {
-                
+            if (((sprite.ypos + sprite.height) > spritesarray[i].ypos) && ((sprite.xpos + sprite.width) > spritesarray[i].xpos) && !((sprite.xpos) > spritesarray[i].xpos + spritesarray[i].width) && !((sprite.ypos) > spritesarray[i].ypos + spritesarray[i].height)) {
                 return true;
             }
         }
@@ -169,8 +168,8 @@ function createbutton(color,hovercolor,width, height, x, y, clickaction, hoverte
 function createblankbutton(sprite, clickaction){
     y = sprite.ypos;
     x = sprite.xpos;
-    height = sprite.img.height
-    width = sprite.img.width
+    height = sprite.height
+    width = sprite.width
 
     if(mouseIsPressed && (((y + height) > mouseY) && ((x + width) > mouseX) && !((x) > mouseX) && !((y) > mouseY))){
         eval(clickaction)
