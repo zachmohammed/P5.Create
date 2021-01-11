@@ -8,4 +8,7 @@ I created p5.create as a games development libary as part of my games developmen
 
 ### Getting Started
 
-To get started you can simply use the https://editor.p5js.org/ to edit the code online all you need to do it modify the index file and import p5create.js into the online editor
+To get started you can simply use the https://editor.p5js.org/ to start using p5.create online all you need to do it modify the index file and import p5create.js into the online editor. You can see the collision 1 example running for yourself here: [link].
+
+
+[link]: https://editor.p5js.org/zach.mohammed/sketches/7E5LGcnEa
