@@ -4,7 +4,15 @@ I created p5.create as a games development libary as part of my games developmen
 
 You can see the game I created using this libary [on my website] as part of my games development unit coursework.
 
+## Why pick P5.Create
 
+### Simplicity 
+
+Compared to other libarys for P5.js P5.Create is easy to understand and doesn't require you to learn too much of a particular syntax, meaning you could easily pick up P5.js.
+
+### Efficiency 
+
+P5.Create is efficient in the examples the well known dinosaur game has been created using P5.Create and an alternative solution. The game using P5.Create was 44 lines shorter!
 
 ## Development
 
@@ -19,12 +27,3 @@ To get started you can simply use the [online p5.js editor] to start using p5.cr
 [here]: https://editor.p5js.org/zach.mohammed/sketches/7E5LGcnEa
 [online p5.js editor]: https://editor.p5js.org/
 
-##Why pick P5.Create
-
-### Simplicity 
-
-Compared to other libarys for P5.js P5.Create is easy to understand and doesn't require you to learn too much of a particular syntax, meaning you could easily pick up P5.js.
-
-### Efficiency 
-
-P5.Create is efficient in the examples the well known dinosaur game has been created using P5.Create and an alternative solution. The game using P5.Create was 44 lines shorter!
