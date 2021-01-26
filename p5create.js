@@ -1,5 +1,6 @@
 
 var spritesarray = [];
+var animations =[];
 var spriteid = 0;
 function createsprite(img, x, y,layer, tag) {
     var sprite = {
@@ -11,7 +12,9 @@ function createsprite(img, x, y,layer, tag) {
         id: spriteid,
         clayer: layer,
         stag: tag,
+        visible: true
     };
+    
 
     spriteid++;
     spritesarray.push(sprite)
@@ -24,6 +27,47 @@ function createsprite(img, x, y,layer, tag) {
     return sprite;
 
 }
+function createanimation(sprite, spritepath, ext ,numberofsprites, timestamp, state){
+    framesarray = []
+    for(let i = 0; i < numberofsprites; i++){
+        spritetoadd = loadImage(spritepath + (i + 1) + ext)
+        framesarray.push(spritetoadd)
+    }
+    var animation = {
+        sprite: sprite,
+        numberofsprites: numberofsprites,
+        timestamp: timestamp,
+        frames: framesarray,
+        currentframe: 1,
+        timecount: 0,
+        state: state
+    }
+    animations.push(animation)
+    return animation
+}
+function changeframes(spritepath, ext,numberofsprites){
+    framesarray = []
+    for(let i = 0; i < numberofsprites; i++){
+        spritetoadd = loadImage(spritepath + (i + 1) + ext)
+        framesarray.push(spritetoadd)
+    }
+    return framesarray
+}
+function drawanimations(){
+    for(let i = 0; i < animations.length; i++){    
+        animations[i].timecount++
+        if(animations[i].timecount > animations[i].timestamp){
+            
+            animations[i].sprite.img = animations[i].frames[animations[i].currentframe - 1]
+            animations[i].timecount = 0
+            animations[i].currentframe++
+        }
+        if(animations[i].currentframe > animations[i].numberofsprites){
+            animations[i].currentframe = 1
+        }
+    }
+}
+
 
 function createshape(shape, height, width, x, y, tag){
     var shape = {
@@ -34,8 +78,10 @@ function createshape(shape, height, width, x, y, tag){
         xpos: x,
         ypos: y,
         stag: tag,
+        id: spriteid,
         color: color(random(255),random(255),random(255)),
     }
+    spriteid++;
     spritesarray.push(shape)
     return shape
 }
@@ -51,20 +97,22 @@ function alreadyexists(spritecheck){
 
 function drawsprites() {
     for (let i = 0; i < spritesarray.length; i++) {
-        if(spritesarray[i].isshape == true){
-            fill(spritesarray[i].color) 
-            switch(spritesarray[i].shape){
-                case "rect" || "rectangle":
-                    rect(spritesarray[i].xpos, spritesarray[i].ypos, spritesarray[i].width, spritesarray[i].height)
-                    break;
-                case "circle" || "ellipse":
-                    ellipse(spritesarray[i].xpos, spritesarray[i].ypos, spritesarray[i].width, spritesarray[i].height)
-                    break;
-
-            }   
-        }
-        else{
-            image(spritesarray[i].img, spritesarray[i].xpos, spritesarray[i].ypos)
+        if(spritesarray[i].visible == true){
+            if(spritesarray[i].isshape == true){
+                fill(spritesarray[i].color) 
+                switch(spritesarray[i].shape){
+                    case "rect" || "rectangle":
+                        rect(spritesarray[i].xpos, spritesarray[i].ypos, spritesarray[i].width, spritesarray[i].height)
+                        break;
+                    case "circle" || "ellipse":
+                        ellipse(spritesarray[i].xpos, spritesarray[i].ypos, spritesarray[i].width, spritesarray[i].height)
+                        break;
+    
+                }   
+            }
+            else{
+                image(spritesarray[i].img, spritesarray[i].xpos, spritesarray[i].ypos)
+            }
         }
     }
 }
@@ -106,7 +154,9 @@ function removebytag(tag) {
   
 function searchtag(tag) {
     for (let i = 0; i < spritesarray.length; i++) {
-        return(spritesarray[i])
+        if (spritesarray[i].stag == tag) {
+            return(spritesarray[i])
+        }  
     }
 }
 function movebytag(tag, xory, movement) {
@@ -131,8 +181,9 @@ function collide(sprite, collidesprite) {
 }
 function collidewithtag(sprite, tag) {
     for (let i = 0; i < spritesarray.length; i++) {
-        if (spritesarray[i].stag == tag) {
+        if (spritesarray[i].stag == tag) {      
             if (((sprite.ypos + sprite.height) > spritesarray[i].ypos) && ((sprite.xpos + sprite.width) > spritesarray[i].xpos) && !((sprite.xpos) > spritesarray[i].xpos + spritesarray[i].width) && !((sprite.ypos) > spritesarray[i].ypos + spritesarray[i].height)) {
+                
                 return true;
             }
         }
@@ -140,7 +191,6 @@ function collidewithtag(sprite, tag) {
     return false;
 }
 function ifoffscreen(sprite) {
-
     if ((sprite.xpos + sprite.width < 0 || sprite.xpos > width || sprite.ypos > height || sprite.ypos + sprite.width < 0)) {
         return true;
     }
