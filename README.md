@@ -8,7 +8,7 @@ You can see the game I created using this libary [on my website] as part of my g
 
 ### Simplicity 
 
-Compared to other libarys for P5.js P5.Create is easy to understand and doesn't require you to learn too much of a particular syntax, meaning you could easily pick up P5.js.
+Compared to other libarys for P5.js, P5.Create is easy to understand and doesn't require you to learn too much of a particular syntax, meaning you could easily pick up P5.js.
 
 ### Efficiency 
 
