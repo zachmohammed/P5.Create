@@ -1,11 +1,11 @@
 function setup(){
     createCanvas(800, 800);
     background(100,100,100);
-    testrect1 =createshape("rect", 100, 100, 200, 100, "movingrect")
-    testrect2 =createshape("rect", 100, 100, 200, 300, "movingrect")
-    testrect3 =createshape("rect", 100, 100, 200, 500, "movingrect")
-    borderright = createshape("rect", 800,200, 700,0, "")
-    borderleft = createshape("rect", 800,200, -100,0, "")
+    testrect1 =createshape("rect", 200, 100,100, 100,  "movingrect")
+    testrect2 =createshape("rect",  200, 300,100, 100, "movingrect")
+    testrect3 =createshape("rect", 200, 500, 100, 100,  "movingrect")
+    borderright = createshape("rect", 700,0,800,200,  "")
+    borderleft = createshape("rect", -100,0, 800,200, "")
     movingfoward = true
 }
 function draw(){

@@ -3,14 +3,14 @@
 function setup(){
     createCanvas(800, 800);
     background(100,100,100)
-    createshape("rect", 40, 40, 100, 300, "rect1")
-    createshape("rect", 40, 40, 100, 340, "rect2")
-    createshape("rect", 40, 40, 100, 380, "rect1")
-    createshape("rect", 40, 40, 100, 420, "rect2")
-    createshape("rect", 40, 40, 100, 460, "rect1")
-    createshape("rect", 40, 40, 100, 500, "rect2")
-    createshape("rect", 40, 40, 100, 540, "rect1")
-    createshape("rect", 40, 40, 100, 580, "rect2")
+    createshape("rect",100, 300, 40, 40, "rect1")
+    createshape("rect", 100, 340, 40, 40,  "rect2")
+    createshape("rect",100, 380, 40, 40,  "rect1")
+    createshape("rect", 100, 420, 40, 40,  "rect2")
+    createshape("rect",  100, 460, 40, 40, "rect1")
+    createshape("rect", 100, 500, 40, 40,  "rect2")
+    createshape("rect", 100, 540,  40, 40, "rect1")
+    createshape("rect", 100, 580,  40, 40, "rect2")
 }
 function draw(){
     background(100,100,100)
