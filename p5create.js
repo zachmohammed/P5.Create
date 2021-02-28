@@ -72,6 +72,7 @@ function drawanimations(){
 function createshape(shape, height, width, x, y, tag){
     var shape = {
         isshape: true,
+        visible: true,
         shape: shape,
         height: height,
         width: width,
