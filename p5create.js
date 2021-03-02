@@ -117,6 +117,34 @@ function drawsprites() {
     }
 }
 
+function drawspriteslist(list){
+  if (list.isArray===false){
+    print("p5create error - argument is not a list")
+  }
+  for (let i = 0; i < list.length; i++) {
+    image(list[i].img, list[i].xpos, list[i].ypos)
+  }
+}
+
+function drawspritestag(tag){
+  for (let i = 0; i < spritesarray.length; i++) {
+    if (spritesarray[i].stag.includes(tag)){
+      image(spritesarray[i].img, spritesarray[i].xpos, spritesarray[i].ypos)
+    }
+  }
+}
+
+function addtag(sprite, tag){
+  sprite.stag.push(tag)
+}
+
+function removetag(sprite, tag){
+  index = sprite.stag.findIndex((element) => element == tag)
+  if(index !== -1){
+    sprite.stag.splice(index, 1)
+  }
+}
+
 function setsave(name, value) {
     document.cookie = name + "=" + value + ";";
 
@@ -133,6 +161,7 @@ function getsave(cname) {
     }
     return "";
 }
+
 function removeobject(sprite) {
     spriteidentifier = sprite.id;
     for (let i = 0; i < spritesarray.length; i++) {
@@ -144,6 +173,7 @@ function removeobject(sprite) {
 
     }
 }
+
 function removebytag(tag) {
     for (let i = 0; i < spritesarray.length; i++) {
         if (spritesarray[i].stag == tag) {
@@ -151,7 +181,7 @@ function removebytag(tag) {
         }
     }
 }
-  
+
 function searchtag(tag) {
     for (let i = 0; i < spritesarray.length; i++) {
         if (spritesarray[i].stag == tag) {
@@ -159,6 +189,53 @@ function searchtag(tag) {
         }  
     }
 }
+
+function searchid(id) {
+    for (let i = 0; i < spritesarray.length; i++) {
+      if (spritesarray[i].id == id){
+        return spritesarray[i]
+      }
+    }
+}
+
+function searchrandomlist(list){
+    randomnumber = Math.floor(random(0, list.length-1))
+  for (let i = 0; i < list.length; i++){
+    if (i == randomnumber) {
+      return searchid(list[i])
+    }
+  }
+}
+
+function searchrandomtag(tag) {
+  list = []
+  for (let i = 0; i < spritesarray.length; i++) {
+    if (spritesarray[i].stag.includes(tag)){
+      list.push(spritesarray[i].id)
+    }
+  }
+  randomnumber = Math.floor(random(0, list.length-1))
+  for (let i = 0; i < list.length; i++){
+    if (i == randomnumber) {
+        return searchid(list[i])
+    }
+  }
+}
+
+function movespriteabsolute(sprite, x, y){
+    sprite.xpos = x;
+    sprite.ypos = y;
+}
+
+function movespriterelative(sprite, xory, movement){
+  if (xory == "x") {
+    sprite.xpos += movement;
+  }
+  else if (xory == "y") {
+    sprite.ypos += movement;
+  }
+}
+
 function movebytag(tag, xory, movement) {
     for (let i = 0; i < spritesarray.length; i++) {
         if (spritesarray[i].stag == tag) {
