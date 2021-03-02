@@ -11,7 +11,7 @@ function createsprite(img, x, y,layer, tag) {
         width: img.width,
         id: spriteid,
         clayer: layer,
-        stag: tag,
+        stag: [tag],
         visible: true
     };
     
