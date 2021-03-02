@@ -1,8 +1,8 @@
-
 var spritesarray = [];
-var animations =[];
 var spriteid = 0;
-function createsprite(img, x, y,layer, tag) {
+
+//creates a sprite object and adds it to the sprite list
+function createsprite(img, x, y, layer, tag) {
     var sprite = {
         img: img,
         xpos: x,
@@ -11,10 +11,8 @@ function createsprite(img, x, y,layer, tag) {
         width: img.width,
         id: spriteid,
         clayer: layer,
-        stag: [tag],
-        visible: true
+        stag: [tag]
     };
-    
 
     spriteid++;
     spritesarray.push(sprite)
@@ -27,66 +25,23 @@ function createsprite(img, x, y,layer, tag) {
     return sprite;
 
 }
-function createanimation(sprite, spritepath, ext ,numberofsprites, timestamp, state){
-    framesarray = []
-    for(let i = 0; i < numberofsprites; i++){
-        spritetoadd = loadImage(spritepath + (i + 1) + ext)
-        framesarray.push(spritetoadd)
-    }
-    var animation = {
-        sprite: sprite,
-        numberofsprites: numberofsprites,
-        timestamp: timestamp,
-        frames: framesarray,
-        currentframe: 1,
-        timecount: 0,
-        state: state
-    }
-    animations.push(animation)
-    return animation
-}
-function changeframes(spritepath, ext,numberofsprites){
-    framesarray = []
-    for(let i = 0; i < numberofsprites; i++){
-        spritetoadd = loadImage(spritepath + (i + 1) + ext)
-        framesarray.push(spritetoadd)
-    }
-    return framesarray
-}
-function drawanimations(){
-    for(let i = 0; i < animations.length; i++){    
-        animations[i].timecount++
-        if(animations[i].timecount > animations[i].timestamp){
-            
-            animations[i].sprite.img = animations[i].frames[animations[i].currentframe - 1]
-            animations[i].timecount = 0
-            animations[i].currentframe++
-        }
-        if(animations[i].currentframe > animations[i].numberofsprites){
-            animations[i].currentframe = 1
-        }
-    }
-}
 
-
-function createshape(shape, x, y, width, height, tag){
+//creates a shape and adds it to the sprites list
+function createshape(shape, height, width, x, y){
     var shape = {
         isshape: true,
-        visible: true,
         shape: shape,
         height: height,
         width: width,
         xpos: x,
         ypos: y,
-        stag: tag,
-        id: spriteid,
         color: color(random(255),random(255),random(255)),
     }
-    spriteid++;
     spritesarray.push(shape)
     return shape
 }
 
+//checks if a sprite is in the sprite list
 function alreadyexists(spritecheck){
     for (let i = 0; i < spritesarray.length; i++) {
         if((spritesarray[i].img == spritecheck.img)&& (spritesarray[i].xpos == spritecheck.xpos) && (spritesarray[i].ypos == spritecheck.ypos)){
@@ -96,28 +51,28 @@ function alreadyexists(spritecheck){
     return false;
 }
 
+//draws sprites
 function drawsprites() {
     for (let i = 0; i < spritesarray.length; i++) {
-        if(spritesarray[i].visible == true){
-            if(spritesarray[i].isshape == true){
-                fill(spritesarray[i].color) 
-                switch(spritesarray[i].shape){
-                    case "rect" || "rectangle":
-                        rect(spritesarray[i].xpos, spritesarray[i].ypos, spritesarray[i].width, spritesarray[i].height)
-                        break;
-                    case "circle" || "ellipse":
-                        ellipse(spritesarray[i].xpos, spritesarray[i].ypos, spritesarray[i].width, spritesarray[i].height)
-                        break;
-    
-                }   
-            }
-            else{
-                image(spritesarray[i].img, spritesarray[i].xpos, spritesarray[i].ypos)
-            }
+        if(spritesarray[i].isshape == true){
+            fill(spritesarray[i].color) 
+            switch(spritesarray[i].shape){
+                case "rect" || "rectangle":
+                    rect(spritesarray[i].xpos, spritesarray[i].ypos, spritesarray[i].width, spritesarray[i].height)
+                    break;
+                case "circle" || "ellipse":
+                    ellipse(spritesarray[i].xpos, spritesarray[i].ypos, spritesarray[i].width, spritesarray[i].height)
+                    break;
+
+            }   
+        }
+        else{
+            image(spritesarray[i].img, spritesarray[i].xpos, spritesarray[i].ypos)
         }
     }
 }
 
+//draws sprites from a list
 function drawspriteslist(list){
   if (list.isArray===false){
     print("p5create error - argument is not a list")
@@ -127,6 +82,7 @@ function drawspriteslist(list){
   }
 }
 
+//draws sprites from a tag
 function drawspritestag(tag){
   for (let i = 0; i < spritesarray.length; i++) {
     if (spritesarray[i].stag.includes(tag)){
@@ -135,10 +91,12 @@ function drawspritestag(tag){
   }
 }
 
+//add a tag to a sprite
 function addtag(sprite, tag){
   sprite.stag.push(tag)
 }
 
+//remove a tag from a sprite
 function removetag(sprite, tag){
   index = sprite.stag.findIndex((element) => element == tag)
   if(index !== -1){
@@ -146,10 +104,12 @@ function removetag(sprite, tag){
   }
 }
 
+//allows you to set a save value in the game
 function setsave(name, value) {
     document.cookie = name + "=" + value + ";";
-
 }
+
+//allows you to grab a pre-existing save
 function getsave(cname) {
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -163,6 +123,7 @@ function getsave(cname) {
     return "";
 }
 
+//removes a sprite
 function removeobject(sprite) {
     spriteidentifier = sprite.id;
     for (let i = 0; i < spritesarray.length; i++) {
@@ -175,6 +136,7 @@ function removeobject(sprite) {
     }
 }
 
+//removes a group of sprites
 function removebytag(tag) {
     for (let i = 0; i < spritesarray.length; i++) {
         if (spritesarray[i].stag == tag) {
@@ -183,14 +145,14 @@ function removebytag(tag) {
     }
 }
 
-function searchtag(tag) {
+//searches for a tag - fill in the blank section
+function addCountTag(tag) {
     for (let i = 0; i < spritesarray.length; i++) {
-        if (spritesarray[i].stag == tag) {
-            return(spritesarray[i])
-        }  
+      
     }
 }
 
+//searches for an id
 function searchid(id) {
     for (let i = 0; i < spritesarray.length; i++) {
       if (spritesarray[i].id == id){
@@ -199,6 +161,7 @@ function searchid(id) {
     }
 }
 
+//outputs a random sprite from a list
 function searchrandomlist(list){
     randomnumber = Math.floor(random(0, list.length-1))
   for (let i = 0; i < list.length; i++){
@@ -208,6 +171,7 @@ function searchrandomlist(list){
   }
 }
 
+//searches for a random sprite with a tag and returns its id
 function searchrandomtag(tag) {
   list = []
   for (let i = 0; i < spritesarray.length; i++) {
@@ -223,11 +187,13 @@ function searchrandomtag(tag) {
   }
 }
 
+//moves 1 sprite absolutely
 function movespriteabsolute(sprite, x, y){
     sprite.xpos = x;
     sprite.ypos = y;
 }
 
+//moves 1 sprite relatively
 function movespriterelative(sprite, xory, movement){
   if (xory == "x") {
     sprite.xpos += movement;
@@ -237,18 +203,21 @@ function movespriterelative(sprite, xory, movement){
   }
 }
 
+//allows you to move all sprites in a group
 function movebytag(tag, xory, movement) {
     for (let i = 0; i < spritesarray.length; i++) {
         if (spritesarray[i].stag == tag) {
-            if (xory = "x") {
+            if (xory == "x") {
                 spritesarray[i].xpos += movement;
             }
-            else if (xory = "y") {
+            else if (xory == "y") {
                 spritesarray[i].ypos += movement;
             }
         }
     }
 }
+
+//checks for collisions
 function collide(sprite, collidesprite) {
     if (((sprite.ypos + sprite.height) > collidesprite.ypos) && ((sprite.xpos + sprite.width) > collidesprite.xpos) && !((sprite.xpos) > collidesprite.xpos + collidesprite.width) && !((sprite.ypos) > collidesprite.ypos + collidesprite.height)) {
         return true;
@@ -257,10 +226,12 @@ function collide(sprite, collidesprite) {
         return false;
     }
 }
+
+//checks for collisions with a group
 function collidewithtag(sprite, tag) {
     for (let i = 0; i < spritesarray.length; i++) {
-        if (spritesarray[i].stag == tag) {      
-            if (((sprite.ypos + sprite.height) > spritesarray[i].ypos) && ((sprite.xpos + sprite.width) > spritesarray[i].xpos) && !((sprite.xpos) > spritesarray[i].xpos + spritesarray[i].width) && !((sprite.ypos) > spritesarray[i].ypos + spritesarray[i].height)) {
+        if (spritesarray[i].stag == tag) {
+            if (((sprite.ypos + sprite.img.height) > spritesarray[i].ypos) && ((sprite.xpos + sprite.img.width) > spritesarray[i].xpos) && !((sprite.xpos) > spritesarray[i].xpos + spritesarray[i].img.width) && !((sprite.ypos) > spritesarray[i].ypos + spritesarray[i].img.height)) {
                 
                 return true;
             }
@@ -268,12 +239,16 @@ function collidewithtag(sprite, tag) {
     }
     return false;
 }
+
+//checks if a sprite is off screen
 function ifoffscreen(sprite) {
+
     if ((sprite.xpos + sprite.width < 0 || sprite.xpos > width || sprite.ypos > height || sprite.ypos + sprite.width < 0)) {
         return true;
     }
 }
 
+//creates a button
 function createbutton(color,hovercolor,width, height, x, y, clickaction, hovertext){
     
     if(mouseIsPressed && (((y + height) > mouseY) && ((x + width) > mouseX) && !((x) > mouseX) && !((y) > mouseY))){
@@ -293,11 +268,12 @@ function createbutton(color,hovercolor,width, height, x, y, clickaction, hoverte
     fill(0,0,0);
 }
 
+//creates a blank button
 function createblankbutton(sprite, clickaction){
     y = sprite.ypos;
     x = sprite.xpos;
-    height = sprite.height
-    width = sprite.width
+    height = sprite.img.height
+    width = sprite.img.width
 
     if(mouseIsPressed && (((y + height) > mouseY) && ((x + width) > mouseX) && !((x) > mouseX) && !((y) > mouseY))){
         eval(clickaction)
@@ -306,7 +282,3 @@ function createblankbutton(sprite, clickaction){
 
     fill(0,0,0);
 }
-
-
-
-
