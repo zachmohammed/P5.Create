@@ -4,8 +4,8 @@ function setup(){
     testrect1 =createshape("rect", 200, 100,100, 100,  "movingrect")
     testrect2 =createshape("rect",  200, 300,100, 100, "movingrect")
     testrect3 =createshape("rect", 200, 500, 100, 100,  "movingrect")
-    borderright = createshape("rect", 700,0,800,200,  "")
-    borderleft = createshape("rect", -100,0, 800,200, "")
+    borderright = createshape("rect", 700,0,200,800,  "")
+    borderleft = createshape("rect", -100,0, 200,800, "")
     movingfoward = true
 }
 function draw(){

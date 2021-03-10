@@ -2,8 +2,8 @@ function setup(){
     createCanvas(800, 800);
     background(100,100,100);
     testrect =createshape("rect", 200, 100,100, 100,  "")
-    borderright = createshape("rect",  700,0,800,200, "")
-    borderleft = createshape("rect",  -100,0,  800,200,"")
+    borderright = createshape("rect",  700,0,100,800, "")
+    borderleft = createshape("rect",  0,0,  100,800,"")
     movingfoward = true
 }
 function draw(){
