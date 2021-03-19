@@ -1,17 +1,17 @@
 p5.disableFriendlyErrors = true;
 
 function preload() {
-  universeBackground = loadImage("assets/space.png")
-  mercuryImg = loadImage("assets/mercury.png")
-  venusImg = loadImage("assets/venus.png")
-  earthImg = loadImage("assets/earth.png")
-  moonImg = loadImage("assets/moon.png")
-  marsImg = loadImage("assets/mars.png")
-  jupiterImg = loadImage("assets/jupiter.png")
-  saturnImg = loadImage("assets/saturn.png")
-  uranusImg = loadImage("assets/uranus.png")
-  neptuneImg = loadImage("assets/neptune.png")
-  pointerImg = loadImage("assets/pointer.png")
+  universeBackground = loadImage("examples/Planet game/assets/space.png")
+  mercuryImg = loadImage("examples/Planet game/assets/mercury.png")
+  venusImg = loadImage("examples/Planet game/assets/venus.png")
+  earthImg = loadImage("examples/Planet game/assets/earth.png")
+  moonImg = loadImage("examples/Planet game/assets/moon.png")
+  marsImg = loadImage("examples/Planet game/assets/mars.png")
+  jupiterImg = loadImage("examples/Planet game/assets/jupiter.png")
+  saturnImg = loadImage("examples/Planet game/assets/saturn.png")
+  uranusImg = loadImage("examples/Planet game/assets/uranus.png")
+  neptuneImg = loadImage("examples/Planet game/assets/neptune.png")
+  pointerImg = loadImage("examples/Planet game/assets/pointer.png")
 }
 
 function setup() {
